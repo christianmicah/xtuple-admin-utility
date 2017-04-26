@@ -9,7 +9,6 @@ provision_menu() {
     "provisioncluster" "Provision PostgreSQL Cluster" ON \
     "initdb" "Add xTuple admin user and role" ON \
     "demodb" "Load xTuple Database" OFF \
-    "qtclient" "xTuple ERP Client" OFF \
     "webclient" "Load xTuple Web Client" OFF \
     "nginx" "Nginx" OFF \
     3>&1 1>&2 2>&3)
@@ -33,10 +32,8 @@ provision_menu() {
                                 ;;
             "initdb") log_choice prepare_database auto
                       ;;
-            "nginx") nginx_prompt
+            "nginx") configure_nginx
                      ;;
-            "qt-client") msgbox "Qt Client not implemented yet"
-                         ;;
             "demodb") log_choice download_demo manual $WORKDIR/tmp.backup
                       ;;
             "webclient") log_choice install_mwc_menu
